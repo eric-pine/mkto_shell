@@ -3,6 +3,8 @@
 # This script requests a new authorization token for the Marketo REST API
 
 source ./vars.sh
+source ./functions.sh
+
 
 if [ ${MARKETODEBUG} ] ; then
   echo "command: $0"
@@ -30,6 +32,7 @@ if [ -n $(cat "$output_file" | jq -r '.["access_token"]') ]
     echo -e "\n\e[32mSUCCESS!\e[0m"
     echo -e "\e[32$(cat "$output_file" | jq -r '.["access_token"]')\e[0m\n\n"
     echo "response saved in $output_file"
+    export querycount=0
   else
     echo -e "\n\n\e[31mFailure!\e[0m\n\n"
     echo "Errors: $(cat "$output_file" | jq -r '.["errors"]')"    

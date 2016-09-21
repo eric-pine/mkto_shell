@@ -53,4 +53,9 @@ sleep ${throttlewait}
 echo "Downloading email templates..."
 ${MARKETOSCRIPTPATH}/get_all_emailtemplates.sh
 
+echo -e "\n\n\n"
+echo "Pausing $throttlewait seconds to not exceed max query limit..."
+sleep ${throttlewait}
+echo "Downloading available segmentations..."
+${MARKETOSCRIPTPATH}/get_available_segmentations.sh
 echo "Finished!"

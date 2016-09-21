@@ -40,3 +40,14 @@ if [ $# -eq 1 ]
 fi
 }
 
+check_querycount () {
+  querycount=$[$querycount+1]
+  when_debug "echo -e \nExecuting query Number: $querycount"
+  if [ $querycount -eq "$pauseafter" ] ; then
+    if [ ${MARKETODEBUG} ] ; then
+      echo "Pausing $throttlewait seconds to not exceed max query limit..."
+    fi
+    sleep "$throttlewait"
+    querycount=0
+  fi
+}
