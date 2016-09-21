@@ -1,0 +1,56 @@
+#!/bin/bash
+
+#This script caches all Marketo landing pages and landing page templates locally
+echo -e "\n\n\n"
+echo "Setting variables..."
+source ./vars.sh
+
+echo -e "\n\n\n"
+echo "Pausing $throttlewait seconds to not exceed max query limit..."
+sleep ${throttlewait}
+echo "Requesting authentication token..."
+${MARKETOSCRIPTPATH}/example_get_auth_token.sh
+
+
+echo -e "\n\n\n"
+echo "Pausing $throttlewait seconds to not exceed max query limit..."
+sleep ${throttlewait}
+echo "Retrieving landing page list..."
+${MARKETOSCRIPTPATH}/get_all_landingpages_json.sh
+
+echo -e "\n\n\n"
+echo "Pausing $throttlewait seconds to not exceed max query limit..."
+sleep ${throttlewait}
+echo "Retrieving landing page template list..."
+${MARKETOSCRIPTPATH}/get_all_landingpage_templates.json.sh
+
+echo -e "\n\n\n"
+echo "Pausing $throttlewait seconds to not exceed max query limit..."
+echo "Downloading landing page content..."
+./get_landingpage_content.sh
+
+echo -e "\n\n\n"
+echo "Pausing $throttlewait seconds to not exceed max query limit..."
+sleep ${throttlewait}
+echo "Downloading landing page template content..."
+${MARKETOSCRIPTPATH}/get_landingpage_template_content.sh
+
+echo -e "\n\n\n"
+echo "Pausing $throttlewait seconds to not exceed max query limit..."
+sleep ${throttlewait}
+echo "Downloading folders..."
+${MARKETOSCRIPTPATH}/get_all_folders.sh
+
+echo -e "\n\n\n"
+echo "Pausing $throttlewait seconds to not exceed max query limit..."
+sleep ${throttlewait}
+echo "Downloading programs..."
+${MARKETOSCRIPTPATH}/get_all_programs.sh
+
+echo -e "\n\n\n"
+echo "Pausing $throttlewait seconds to not exceed max query limit..."
+sleep ${throttlewait}
+echo "Downloading email templates..."
+${MARKETOSCRIPTPATH}/get_all_emailtemplates.sh
+
+echo "Finished!"

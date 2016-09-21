@@ -1,0 +1,17 @@
+#!/bin/bash
+
+source ./vars.sh
+
+offsetstring='&offset='
+offset=0
+i=200
+if [ $# -eq 0 ]
+  then
+    echo ' '
+    echo ' '
+    echo "Correct script usage: update_landingpage_content.sh <auth token>"
+    access_token=$(cat auth_token.json | awk -F'"' '{print $4}')
+  else
+    access_token=$1
+fi
+

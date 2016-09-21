@@ -1,0 +1,17 @@
+export MARKETODATADIR="/var/solarwinds_msp_wd_scripts/marketo/marketo_data"
+export MARKETOSCRIPTPATH="/var/solarwinds_msp_wd_scripts/marketo"
+export MARKETOACCT="356-UVH-403"
+export MARKETORESTURL="https://${MARKETOACCT}.mktorest.com/rest/asset/v1"
+export MARKETOAUTHURL="https://${MARKETOACCT}.mktorest.com/identity/oauth"
+export MARKETODEBUG=true
+export MARKETOCURLTMP="$MARKETOSCRIPTPATH/curl_temp"
+export MARKETOUPDATERESPONSE="$MARKETOCURLTMP/updateresponselog.json"
+export SSLCACERTS="/etc/ssl/certs/ca-certificates.crt"
+export CURLARGS="--insecure --cacert ${SSLCACERTS} -v"
+export capath="/etc/ssl/certs/"
+export cacert="/etc/ssl/certs/ca-certificates.crt"
+export pauseafter=45
+export throttlewait=25
+export MARKETOFOLDERPATH=${MARKETODATADIR}/folders
+export access_token=$(cat auth_token.json | awk -F'"' '{print $4}')
+#export mktoaccesstoken=$(cat auth_token.json | awk -F'"' '{print $4}')
