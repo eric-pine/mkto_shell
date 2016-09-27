@@ -22,7 +22,7 @@ if [ $# -eq 0 ]
   then
     if [ $(cat "${MARKETOUPDATERESPONSE}" | jq '.["success"]' | tail -n 1 ) = "true" ]
       then
-        echo -e "\e[32mSUCCESS!\e[0m"
+        echo -e "\e[32mQUERY SUCCESSFUL!\e[0m"
       else
         echo -e "\n\n\e[31mFailure!\e[0m\n\n"
         echo "Errors: $(cat "${MARKETOUPDATERESPONSE}" | jq -r '.["errors"]')" | tail -n 6
@@ -32,7 +32,7 @@ if [ $# -eq 1 ]
   then
         if [ $(cat "$1" | jq '.["success"]' | tail -n 1 ) = "true" ]
       then
-        echo -e "\e[32mSUCCESS!\e[0m"
+        echo -e "\e[32mQUERY SUCCESSFUL!\e[0m"
       else
         echo -e "\n\n\e[31mFailure!\e[0m\n\n"
         echo "Errors: $(cat "$1" | jq -r '.["errors"]')" | tail -n 6

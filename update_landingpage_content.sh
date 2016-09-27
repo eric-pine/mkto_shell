@@ -35,9 +35,10 @@ for sectionid in $sectionids
 do
   echo "Calling update for $sectionid"
   content=$(cat ${MARKETODATADIR}/landingpages/${id}/content_${id}.json | jq -r '.[][]["content"]')
+  body="id=${id}&contentId=${sectionid}&Type=RichText&value=${content}"
   echo -e "\n" >> ${MARKETOUPDATERESPONSE}
   #echo "using curl command echo \"${content}\" | curl  -X POST -d @- ${MARKETORESTURL}/landingPageTemplate/${id}/content.json?access_token=${access_token}"
-  echo "${content}" | curl -F "content=@-;Type=text/html; charset=UTF-8" ${MARKETORESTURL}/landingPage/${id}/${sectionid}.json?access_token=${access_token} >> ${MARKETOUPDATERESPONSE}
+  echo ${body} | curl -d @- ${MARKETORESTURL}/landingPage/${id}/${sectionid}.json?access_token=${access_token} >> ${MARKETOUPDATERESPONSE}
 check_response
 done
 
